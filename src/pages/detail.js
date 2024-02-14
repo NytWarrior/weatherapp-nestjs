@@ -1,45 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import moment from 'moment';
 import { weatherLabelMap, weatherCodeComponentMap } from '@/assets/js/maps';
-import { WiSunrise, WiSunset } from 'react-icons/wi';
-
-function DayWeather({ Icon, label, temperature, date }) {
-
-    return (
-        <div className="flex flex-col items-center">
-            <span className="font-semibold text-lg">{temperature}°C</span>
-            {Icon && <Icon size={48} color="text-gray-490" />}
-            <span className="font-semibold mt-1 text-sm">{moment(date).format("HH:mm")}</span>
-            {/* <span className="text-xs font-semibold text-gray-400">AM</span> */}
-        </div >
-
-    )
-}
-
-function DayWeather2({ Icon, label, payload }) {
-    return (
-        <div className="flex justify-between items-center">
-            <span className="font-semibold text-lg w-1/4">
-                {moment(payload.time).format("DD-MM-YYYY")}
-            </span>
-            <div className="flex items-center justify-end w-1/4 pr-10">
-                <span className="flex items-center space-x-1 text-black-50">
-                    <WiSunrise size={24} color="text-gray-400" />
-                    <span>{moment(payload.sunrise).format("HH:mm")}</span>
-                    <WiSunset size={24} color="text-gray-400" />
-                    <span>{moment(payload.sunset).format("HH:mm")}</span>
-                </span>
-            </div>
-            {Icon && <Icon size={24} color="text-gray-400" />}
-            <span>{label}</span>
-            <span className="font-semibold text-lg w-1/4 text-right">
-                {payload.temperature_2m_min} / {payload.temperature_2m_max} °C
-            </span>
-        </div>
-    );
-}
+import { DayWeather, DayWeather2 } from '@/component/weatherformat';
 
 export default function Detail() {
     const [location, setLocation] = useState(null);
@@ -60,7 +23,7 @@ export default function Detail() {
             let hourlyDataSet = [];
 
             // Process hourly data for every 3 hours
-            for (let i = 0; i < hourly?.time.length && i < 28; i += 3) {
+            for (let i = 0; i < hourly?.time.length && i < 25; i += 3) {
                 hourlyDataSet.push({
                     time: hourly?.time[i],
                     temperature_2m: hourly?.temperature_2m[i],

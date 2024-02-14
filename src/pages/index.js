@@ -1,46 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import Head from 'next/head';
 import moment from 'moment';
-import { WiSunrise, WiSunset } from "react-icons/wi";
 import { weatherCodeComponentMap, weatherLabelMap } from '@/assets/js/maps';
+import { DayWeather, DayWeather2 } from '@/component/weatherformat';
 import Link from 'next/link';
 
-function DayWeather({ Icon, label, temperature, date }) {
-
-  return (
-    <div className="flex flex-col items-center">
-      <span className="font-semibold text-lg">{temperature}°C</span>
-      {Icon && <Icon size={48} color="text-gray-490" />}
-      <span className="font-semibold mt-1 text-sm">{moment(date).format("HH:mm")}</span>
-      {/* <span className="text-xs font-semibold text-gray-400">AM</span> */}
-    </div >
-
-  )
-}
-
-function DayWeather2({ Icon, label, payload }) {
-  return (
-    <div className="flex justify-between items-center">
-      <span className="font-semibold text-lg w-1/4">
-        {moment(payload.time).format("DD-MM-YYYY")}
-      </span>
-      <div className="flex items-center justify-end w-1/4 pr-10">
-        <span className="flex items-center space-x-1 text-black-50">
-          <WiSunrise size={24} color="text-gray-400" />
-          <span>{moment(payload.sunrise).format("HH:mm")}</span>
-          <WiSunset size={24} color="text-gray-400" />
-
-          <span>{moment(payload.sunset).format("HH:mm")}</span>
-        </span>
-      </div>
-      {Icon && <Icon size={24} color="text-gray-400" />}
-      <span>{label}</span>
-      <span className="font-semibold text-lg w-1/4 text-right">
-        {payload.temperature_2m_min} / {payload.temperature_2m_max} °C
-      </span>
-    </div>
-  );
-}
 export default function Home() {
   const [locationPermission, setLocationPermission] = useState(null);
   const [dailyData, setDailyData] = useState([])
@@ -59,7 +23,7 @@ export default function Home() {
       let hourlyDataSet = [];
 
       // Process hourly data for every 3 hours
-      for (let i = 0; i < hourly?.time.length && i < 28; i += 3) {
+      for (let i = 0; i < hourly?.time.length && i < 25; i += 3) {
         hourlyDataSet.push({
           time: hourly?.time[i],
           temperature_2m: hourly?.temperature_2m[i],
@@ -147,10 +111,7 @@ export default function Home() {
                   <div className="flex flex-col">
                     <span className="text-6xl font-bold">{temp}°C</span>
                     <span className="font-semibold mt-1 text-gray-500">
-                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" />
-                      </svg>
+                      Based on Your Current Location.
                     </span>
                   </div>
                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" className="w-20 h-20 text-white p-2 bg-pink-400 rounded-full" viewBox="0 0 24 24">
