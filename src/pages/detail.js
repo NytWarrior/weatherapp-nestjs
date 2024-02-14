@@ -73,7 +73,7 @@ export default function Detail() {
             }
 
             setHourlyData(hourlyDataSet);
-            console.log(hourlyDataSet)
+            // console.log(hourlyDataSet)
 
             // Process daily data
             let dailyDataSet = [];
@@ -108,9 +108,9 @@ export default function Detail() {
             // Do something with the details
             fetchWeatherData(latitude, longitude);
             setCity(selectedCity)
-            console.log('Selected City:', selectedCity);
-            console.log('Latitude:', latitude);
-            console.log('Longitude:', longitude);
+            // console.log('Selected City:', selectedCity);
+            // console.log('Latitude:', latitude);
+            // console.log('Longitude:', longitude);
             setLocation(true);
         } else {
             setLocation(false);
@@ -126,8 +126,8 @@ export default function Detail() {
             </Head>
             {/* Weather Component */}
             {/* {location === null && <p>Requesting location permission...</p>} */}
-            {/* {location === false && <p>Location permission denied.</p>} */}
-            {console.log(dailyData)}
+            {location === false && <p>Error while fetching Location.</p>}
+            {/* {console.log(dailyData)} */}
             {location === true && (
                 <div className="relative overflow-hidden">
                     <div className="flex flex-col items-center justify-center w-screen min-h-screen text-gray-700 p-10 bg-gradient-to-br from-pink-200 via-purple-200 to-indigo-200">

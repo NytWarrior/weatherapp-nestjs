@@ -75,7 +75,7 @@ export default function SearchBox() {
 
                 {!toggle ? (
                     <input
-                        className="p-3 w-full rounded-md bg-transparent border border-black-400 focus:border-black-200 outline-none shadow shadow-black-300 text-black-600 placeholder:text-black-800"
+                        className="p-3 w-full rounded-md bg-transparent border border-black-400 focus:border-black-200 outline-none shadow shadow-black-300 text-black-200 placeholder:text-black-800"
                         placeholder="Search for city"
                         onInput={(e) => setValue(e.target.value)}
                         value={value}

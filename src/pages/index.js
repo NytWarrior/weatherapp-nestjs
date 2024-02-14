@@ -72,7 +72,7 @@ export default function Home() {
       }
 
       setHourlyData(hourlyDataSet);
-      console.log(hourlyDataSet)
+      // console.log(hourlyDataSet)
 
       // Process daily data
       let dailyDataSet = [];
@@ -112,7 +112,7 @@ export default function Home() {
 
 
 
-    console.log(dailyData)
+    // console.log(dailyData)
 
     // Check if geolocation is supported
     if (navigator.geolocation) {
